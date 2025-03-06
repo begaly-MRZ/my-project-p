@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Торговый журнал</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Торговый журнал</h2>
+    <table id="tradingJournal">
+        <thead>
+            <tr>
+                <th>актив инструмент</th>
+                <th>дата время</th>
+                <th>покупка продажа</th>
+                <th>лот</th>
+                <th>риск на зделку</th>
+                <th>результат -.+</th>
+                <th>примечание</th>
+                <th>коментарие</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button onclick="addRow()">Добавить запись</button>
+    
+    <script>
+        function addRow() {
+            let table = document.getElementById("tradingJournal").getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
+            
+            for (let i = 0; i < 7; i++) {
+                let cell = newRow.insertCell(i);
+                let input = document.createElement("input");
+                input.type = "text";
+                cell.appendChild(input);
+            }
+            
+            let deleteCell = newRow.insertCell(7);
+            let deleteButton = document.createElement("button");
+            deleteButton.innerText = "Удалить";
+            deleteButton.onclick = function() { table.deleteRow(newRow.rowIndex - 1); };
+            deleteCell.appendChild(deleteButton);
+        }
+    </script>
+</body>
+</html>
